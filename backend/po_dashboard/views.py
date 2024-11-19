@@ -1,15 +1,17 @@
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework import status
 
-# po_dashboard/views.py
+class POUploadView(APIView):
+    parser_classes = (MultiPartParser, FormParser)
 
-from rest_framework.viewsets import ModelViewSet
-from .models import PO, Invoice
-from .serializers import POSerializer, InvoiceSerializer
+    def post(self, request, *args, **kwargs):
+        file_obj = request.FILES.get('po_file')
+        if not file_obj:
+            return Response({'error': 'No file provided.'}, status=status.HTTP_400_BAD_REQUEST)
 
-class POViewSet(ModelViewSet):
-    queryset = PO.objects.all()
-    serializer_class = POSerializer
+        # Implement file processing logic here
+        # For example, parse the file and extract PO data
 
-
-class InvoiceViewSet(ModelViewSet):
-    queryset = Invoice.objects.all()
-    serializer_class = InvoiceSerializer
+        return Response({'message': 'File uploaded successfully.'}, status=status.HTTP_200_OK)
