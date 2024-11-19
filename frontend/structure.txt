@@ -1,0 +1,8 @@
+src/
+|-- components/
+|   |-- Dashboard.js   // Main dashboard layout
+|   |-- POList.js      // Component to display and manage POs
+|   |-- InvoiceList.js // Component to display and manage Invoices
+|-- services/
+|   |-- api.js         // Axios-based API service for Django backend
+|-- App.js            // Main React entry point

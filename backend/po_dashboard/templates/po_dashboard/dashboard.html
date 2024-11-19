@@ -1,0 +1,34 @@
+{% extends 'po_dashboard/base.html' %}
+
+{% block content %}
+<header>
+    <h1>Purchase Order Status Dashboard</h1>
+</header>
+
+<!-- Sorting Section -->
+<div class="sorting">
+    <input type="text" id="search-bar" placeholder="Search by Customer, PO Number, or Buyer">
+    <label for="sort-options">Sort by:</label>
+    <select id="sort-options">
+        <option value="orderDate">Order Date</option>
+        <option value="deliveryDate">Delivery Date</option>
+        <option value="customer">Customer</option>
+        <option value="buyer">Buyer</option>
+    </select>
+    <button id="sort-button">Sort</button>
+</div>
+
+<!-- Dashboard Content Section -->
+<div class="dashboard-content">
+    {% for po in pos %}
+    <div class="po-entry">
+        <p><strong>PO Number:</strong> {{ po.po_number }}</p>
+        <p><strong>Customer:</strong> {{ po.customer }}</p>
+        <p><strong>Buyer:</strong> {{ po.buyer }}</p>
+        <p><strong>Order Date:</strong> {{ po.order_date }}</p>
+        <p><strong>Delivery Date:</strong> {{ po.delivery_date }}</p>
+        <p><strong>Status:</strong> {{ po.status }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
